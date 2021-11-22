@@ -10,15 +10,10 @@ import java.util.Map;
 
 @Service
 public class CreateServiceUserImpl implements CreateServiceUser {
-
-    private final CreateUserRepository createUserRepository;
-    private final PasswordEncoder passwordEncoder;
-
     @Autowired
-    public CreateServiceUserImpl(CreateUserRepository createUserRepository, PasswordEncoder passwordEncoder) {
-        this.createUserRepository = createUserRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private CreateUserRepository createUserRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public int createUser(CreateUser createUser) {
