@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.6'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.imy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.5.6'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+
+	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.5.6'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+
+	//세션
+	implementation 'org.springframework.session:spring-session-core:2.5.3'
+
+	//비밀번호암호화 시큐리티
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+	compileOnly group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
+
+}
+
+test {
+	useJUnitPlatform()
+}

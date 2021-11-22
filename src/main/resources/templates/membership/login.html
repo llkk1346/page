@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header.html :: imy-header"></div>
+</head>
+<body role="document">
+<div th:replace="/fragments/nav.html :: imy-nav"></div>
+<div class="container theme-showcase" role="main">
+    <form class="form-inline" id="userDataForm" method="post" action="/loginCheck">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">로그인</h3>
+            </div>
+            <div class="panel-body">
+                <label for="userId"></label>
+                <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요."/>
+            </div>
+            <div class="panel-body">
+                <label for="userPw"></label>
+                <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력해주세요."/>
+            </div>
+            <div th:if="${userNot != null}">
+                <div class="alert alert-danger" role="alert">
+                    <strong th:text="${userNot}"></strong>
+                </div>
+            </div>
+            <div class="panel-body">
+                <!--<button type="button" class="btn btn-sm btn-primary" onclick="loginCheck()">로그인</button>-->
+                <button type="submit" class="btn btn-sm btn-primary">로그인</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="createUserForm()">회원가입</button>
+            </div>
+        </div>
+    </form>
+</div>
+<footer th:replace="/fragments/footer.html :: imy-footer"></footer>
+<script>
+    function createUserForm() {
+        location.href="/createUserForm";
+    }
+
+    function loginCheck(){
+        let userDataForm = $('#userDataForm').serialize();
+        let test = "";
+        $.ajax({
+            type : "POST",
+            url : "/loginCheck",
+            data : userDataForm,
+            success: function (xhr,status,data){
+                if(data.status===200){
+                    //location.href="http://localhost:8080/";
+                }
+
+            },
+            error: function (xhr, status, error, data) {
+                //location.href="http://localhost:8080/membership/login";
+            }
+        });
+    }
+</script>
+</body>
+</html>
