@@ -14,7 +14,6 @@ public class PasswordEncoderTest {
     private PasswordEncoder passwordEncoder;
 
     @Test
-    @DisplayName("패스워드 암호화 테스트")
     void passwordEncode() {
         //given
         String testPassword = "12345678";
