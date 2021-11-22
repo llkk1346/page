@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,7 +23,7 @@ public class CreateServiceUserImpl implements CreateServiceUser {
     @Override
     public int createUser(CreateUser createUser) {
         String encodedPassword = passwordEncoder.encode(createUser.getUserPw());
-        String encodedPasswordOverlap = passwordEncoder.encode(createUser.getUserPwOverlap());;
+        String encodedPasswordOverlap = passwordEncoder.encode(createUser.getUserPwOverlap());
         createUser.setUserPw(encodedPassword);
         createUser.setUserPwOverlap(encodedPasswordOverlap);
         
