@@ -43,7 +43,7 @@ public class MainController {
         session.invalidate();
         return "redirect:/";
     }
-    
+
     @GetMapping("/createUserForm")
     public String createUserForm() {
         return "membership/createUserForm";
