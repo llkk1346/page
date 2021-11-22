@@ -17,12 +17,9 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    private final CreateServiceUser createServiceUser;
-
     @Autowired
-    public MainController(CreateServiceUser createServiceUser) {
-        this.createServiceUser = createServiceUser;
-    }
+    private CreateServiceUser createServiceUser;
+
 
     @GetMapping("/")
     public String index() {
