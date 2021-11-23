@@ -18,7 +18,7 @@
         AND userId = #{userId}
     </select>
     <!--회원가입-->
-    <insert id="CreateUser">
+    <insert id="createUser">
         INSERT INTO CreateUser
         (
             userId,
