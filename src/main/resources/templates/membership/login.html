@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="/fragments/header.html :: imy-header"></div>
+    <div th:replace="fragments/header.html :: imy-header"></div>
 </head>
 <body role="document">
-<div th:replace="/fragments/nav.html :: imy-nav"></div>
+<div th:replace="fragments/nav.html :: imy-nav"></div>
 <div class="container theme-showcase" role="main">
     <form class="form-inline" id="userDataForm" method="post" action="/loginCheck">
         <div class="panel panel-primary">
@@ -32,7 +32,7 @@
         </div>
     </form>
 </div>
-<footer th:replace="/fragments/footer.html :: imy-footer"></footer>
+<footer th:replace="fragments/footer.html :: imy-footer"></footer>
 <script>
     function createUserForm() {
         location.href="/createUserForm";
