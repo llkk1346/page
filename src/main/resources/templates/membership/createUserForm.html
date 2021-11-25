@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <div th:replace="fragments/header.html :: imy-header"></div>
+<head th:replace="fragments/header.html :: imy-header(회원가입)">
 </head>
 <body role="document">
-<div th:replace="fragments/nav.html :: imy-nav"></div>
+<div th:replace="fragments/nav.html :: imy-nav('membership')"></div>
     <form id="userData">
         <div>
             <label for="userId">아이디</label>

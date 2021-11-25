@@ -12,4 +12,10 @@ public class AlgorithmController {
     public String Algorithm() {
         return "algorithm/algorithm";
     }
+
+    @GetMapping("/writing")
+    public String writing() {
+        return "algorithm/writing";
+    }
 }
+

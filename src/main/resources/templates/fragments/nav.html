@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="imy-nav">
+<div th:fragment="imy-nav(menu)">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -10,12 +10,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Ko DongGeon</a>
+                <a class="navbar-brand" href="/">Ko DongGeon</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">소개</a></li>
-                    <li><a href="algorithm/algorithm">알고리즘</a></li>
+                    <li th:classappend="${menu} == 'home' ? 'active'"><a href="/">소개</a></li>
+                    <li th:classappend="${menu} == 'algorithm' ? 'active'"><a href="/algorithm/algorithm">알고리즘</a></li>
                     <li><a href="#menu">메뉴</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">업데이트 예정 <span class="caret"></span></a>
@@ -29,9 +29,9 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a th:if="${session.loginUser == null}" href="membership/login">로그인</a>
-                        <a th:if="${session.loginUser != null}" href="membership/logout"><strong th:text="${session.loginUser}"></strong>&nbsp;로그아웃</a>
+                    <li th:classappend="${menu} == 'login' ? 'active'">
+                        <a th:if="${session.loginUser == null}" href="/membership/login">로그인</a>
+                        <a th:if="${session.loginUser != null}" href="/membership/logout"><strong th:text="${session.loginUser}"></strong>&nbsp;로그아웃</a>
                     </li>
                 </ul>
             </div><!--/.nav-collapse -->

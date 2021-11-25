@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:replace="fragments/header.html :: imy-header"></div>
+<head th:replace="fragments/header.html :: imy-header(알고리즘)">
 </head>
 <body role="document">
-<div th:replace="fragments/nav.html :: imy-nav"></div>
+<div th:replace="fragments/nav.html :: imy-nav('algorithm')"></div>
 <div class="container theme-showcase" role="main">
     <div class="page-header">
         <h1>알고리즘</h1>
@@ -34,7 +33,48 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-11">
+            <button type="button" onclick="listFindTab('all')" id="allFind">전체글</button>
+            <button type="button" onclick="listFindTab('getChu')" id="getChuFind">추천글</button>
+        </div>
+        <div class=".col-md-1 .col-md-offset-1">
+            <button type="button" class="btn btn-lg btn-primary" onclick="writing()">글쓰기</button>
+        </div>
+    </div>
 </div>
 <footer th:replace="fragments/footer.html :: imy-footer"></footer>
+<script>
+    let index ='all'; //초기화면 전체글로 시작
+    $(document).ready(function (){
+        listFindTab(index)
+    });
+    function listFindTab(index){
+        if (index=='all'){
+            document.getElementById('allFind').className='btn btn-lg btn-primary';
+            document.getElementById('getChuFind').className='btn btn-lg btn-default';
+        } else if(index=='getChu'){
+            document.getElementById('allFind').className='btn btn-lg btn-default';
+            document.getElementById('getChuFind').className='btn btn-lg btn-primary';
+        }
+
+        $.ajax({
+            type: 'POST',
+            url : '/algorithm/algorithm',
+            data: formData,
+            success: function (xhr,status,data ){
+                if(data.status===200){
+                    location.href="localhost:8080/";
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(error, xhr, status);
+            }
+        });
+    }
+    function writing(){
+        location.href="/algorithm/writing";
+    }
+</script>
 </body>
 </html>

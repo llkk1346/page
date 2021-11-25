@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: imy-header(글쓰기)">
+</head>
+<body role="document">
+<div th:replace="fragments/nav.html :: imy-nav('algorithm')"></div>
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <h1>알고리즘</h1>
+  </div>
+  <div class="row">
+    <div class="bs-example" data-example-id="textarea-form-control">
+          <p>
+            <input type="text" class="form-control" id="title" placeholder="제목"/>
+          </p>
+          <p>
+            <textarea class="form-control" rows="3" placeholder="내용"></textarea>
+          </p>
+    </div>
+    <input type="text" th:hidden="${session.loginUser}">
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class=".col-md-2 .col-md-offset-2">
+      <button type="button" class="btn btn-lg btn-default">취소</button>
+      <button type="button" class="btn btn-lg btn-primary">등록</button>
+    </div>
+  </div>
+</div>
+<footer th:replace="fragments/footer.html :: imy-footer"></footer>
+<script>
+  let index ='all'; //초기화면 전체글로 시작
+  $(document).ready(function (){
+    listFindTab(index)
+  });
+  function listFindTab(index){
+    if (index=='all'){
+      document.getElementById('allFind').className='btn btn-lg btn-primary';
+      document.getElementById('getChuFind').className='btn btn-lg btn-default';
+    } else if(index=='getChu'){
+      document.getElementById('allFind').className='btn btn-lg btn-default';
+      document.getElementById('getChuFind').className='btn btn-lg btn-primary';
+    }
+
+    $.ajax({
+      type: 'POST',
+      url : '/algorithm/algorithm',
+      data: formData,
+      success: function (xhr,status,data ){
+        if(data.status===200){
+          location.href="localhost:8080/";
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log(error, xhr, status);
+      }
+    });
+  }
+</script>
+</body>
+</html>
